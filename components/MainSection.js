@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react'
-import TodoItem from './TodoItem'
+import TodoItem from './TodoItem';
+import RpsItem from './RpsItem';
 import Footer from './Footer'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
+import { rpsTypesArray } from '../constants/RpsTypes';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -71,16 +73,31 @@ class MainSection extends Component {
       0
     )
 
+    console.log('rpsTypesArray:', rpsTypesArray);
+
+    rpsTypesArray.map((rpsType, index) =>
+        console.log('rpsType:', rpsType, index)
+    );
+
     return (
-      <section className="main">
-        {this.renderToggleAll(completedCount)}
-        <ul className="todo-list">
-          {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
-          )}
-        </ul>
-        {this.renderFooter(completedCount)}
-      </section>
+      <div>
+        <section className="main">
+          {this.renderToggleAll(completedCount)}
+          <ul className="todo-list">
+            {filteredTodos.map(todo =>
+              <TodoItem key={todo.id} todo={todo} {...actions} />
+            )}
+          </ul>
+          {this.renderFooter(completedCount)}
+        </section>
+        <section>
+          <ul className="rps-items">
+              {rpsTypesArray.map((rpsType, index) =>
+                  <RpsItem key={index} rpsType={rpsType} {...actions} />
+              )}
+          </ul>
+        </section>
+      </div>
     )
   }
 }
