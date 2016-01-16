@@ -1,4 +1,4 @@
-import { SELECTED_RPS_TYPE } from '../constants/ActionTypes'
+import { SET_PLAYER_CHOICE } from '../constants/ActionTypes'
 
 const initialState = {
     rpsType: null
@@ -9,7 +9,7 @@ export default function todos(state = initialState, action) {
   console.log('REDUCER - state:', state);
 
   switch (action.type) {
-    case SELECTED_RPS_TYPE:
+    case SET_PLAYER_CHOICE:
       let stateObject = Object.assign({}, state);
       stateObject.rpsType = action.rpsType;
 
