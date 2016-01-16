@@ -10,9 +10,6 @@ export default function todos(state = initialState, action) {
 
   switch (action.type) {
     case SELECTED_RPS_TYPE:
-
-      //let toDos = state.toDos;
-
       let stateObject = Object.assign({}, state);
       stateObject.rpsType = action.rpsType;
 

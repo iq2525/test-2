@@ -12,6 +12,8 @@ class RpsItem extends Component {
   render() {
     const { rpsType, selectedRpsType} = this.props
 
+    //console.log('selectedRpsType:', selectedRpsType)
+
     let element;
 
       element = (

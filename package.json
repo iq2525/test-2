@@ -9,11 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rackt/redux.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/rackt/redux/issues"
+    "url": ""
   },
   "homepage": "http://rackt.github.io/redux",
   "dependencies": {

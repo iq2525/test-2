@@ -49,20 +49,22 @@ class MainSection extends Component {
     const { filter } = this.state
 
 
-    console.log('todos:', todos);
-
+    console.log('todos:', todos)
     console.log('rpsTypesArray:', rpsTypesArray);
 
-    rpsTypesArray.map((rpsType, index) =>
-        console.log('rpsType:', rpsType, index)
-    );
+    let playerRpsType = todos.rpsType;
+    console.log('Main Section - playerRpsType:', playerRpsType);
+
+    // rpsTypesArray.map((rpsType, index) =>
+    //     console.log('rpsType:', rpsType, index)
+    // );
 
     return (
       <div>
         <section>
           <ul className="rps-items">
               {rpsTypesArray.map((rpsType, index) =>
-                  <RpsItem key={index} rpsType={rpsType} {...actions} />
+                  <RpsItem key={index} rpsType={rpsType} playerRpsType={playerRpsType} {...actions} />
               )}
           </ul>
         </section>
