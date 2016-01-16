@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED } from '../constants/ActionTypes'
+import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_COMPLETED, SELECTED_RPS_TYPE } from '../constants/ActionTypes'
 
 const initialState = {
     toDos: [
@@ -47,6 +47,15 @@ export default function todos(state = initialState, action) {
 
       console.log('stateObject:', stateObject);
       return stateObject;
+
+    case SELECTED_RPS_TYPE:
+      let toDos2 = state.toDos;
+
+      let stateObject2 = Object.assign({}, state, { toDos: toDos});
+      stateObject2.rpsType = action.rpsType;
+
+      console.log('stateObject:', stateObject2);
+      return stateObject2;
 
     case COMPLETE_ALL:
       const areAllMarked = state.toDos.every(todo => todo.completed)

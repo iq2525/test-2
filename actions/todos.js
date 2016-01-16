@@ -24,7 +24,8 @@ export function clearCompleted() {
   return { type: types.CLEAR_COMPLETED }
 }
 
-export function selectedRpsType() {
+export function selectedRpsType(rpsType) {
+  console.log('Inside SELECTED_RPS_TYPE');
   return { type: types.SELECTED_RPS_TYPE,
       rpsType
     }

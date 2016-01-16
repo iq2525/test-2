@@ -4,34 +4,20 @@ import TodoTextInput from './TodoTextInput'
 
 class TodoItem extends Component {
   constructor(props, context) {
+    console.log('props', props);
+
     super(props, context)
-    this.state = {
-      editing: false
-    }
-  }
-
-  handleDoubleClick() {
-    this.setState({ editing: true })
-  }
-
-  handleSave(id, text) {
-    if (text.length === 0) {
-      this.props.deleteTodo(id)
-    } else {
-      this.props.editTodo(id, text)
-    }
-    this.setState({ editing: false })
   }
 
   render() {
-    const { rpsType, completeTodo} = this.props
+    const { rpsType, selectedRpsType} = this.props
 
     let element;
 
       element = (
         <div className="view">
           <button className="select-rps-type"
-                  onClick={() => completeTodo(rpsType)}>
+                  onClick={() => selectedRpsType(rpsType)}>
                   {rpsType}
           </button>
         </div>
@@ -47,7 +33,7 @@ class TodoItem extends Component {
 
 TodoItem.propTypes = {
   rpsType: PropTypes.string.isRequired,
-  completeTodo: PropTypes.func.isRequired
+  selectedRpsType: PropTypes.func.isRequired
 }
 
 export default TodoItem
