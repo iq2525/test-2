@@ -10,7 +10,7 @@ class RpsItem extends Component {
   }
 
   render() {
-    const { rpsType, selectedRpsType} = this.props
+    const { rpsType, setPlayerChoice} = this.props
 
     //console.log('selectedRpsType:', selectedRpsType)
 
@@ -19,7 +19,7 @@ class RpsItem extends Component {
       element = (
         <div className="view">
           <button className="select-rps-type"
-                  onClick={() => selectedRpsType(rpsType)}>
+                  onClick={() => setPlayerChoice(rpsType)}>
                   {rpsType}
           </button>
         </div>
@@ -35,7 +35,7 @@ class RpsItem extends Component {
 
 RpsItem.propTypes = {
   rpsType: PropTypes.string.isRequired,
-  selectedRpsType: PropTypes.func.isRequired
+  setPlayerChoice: PropTypes.func.isRequired
 }
 
 export default RpsItem

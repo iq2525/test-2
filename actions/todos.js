@@ -24,7 +24,7 @@ export function clearCompleted() {
   return { type: types.CLEAR_COMPLETED }
 }
 
-export function selectedRpsType(rpsType) {
+export function setPlayerChoice(rpsType) {
   console.log('Inside SET_PLAYER_CHOICE');
   return { type: types.SET_PLAYER_CHOICE,
       rpsType
