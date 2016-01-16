@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import RpsItem from './RpsItem';
 import { rpsTypesArray } from '../constants/RpsTypes';
+import { GAME_OUTCOMES } from '../constants/GameOutcomes';
 
 class NewGame extends Component {
   constructor(props, context) {
@@ -9,21 +10,52 @@ class NewGame extends Component {
 
   render() {
     const { game, actions } = this.props
-    let playerChoice = game.rpsType;
+    let {rpsType, computerChoice, gameOutcome } = game;
+
 
     let element
+    let gameResultText
 
-    if (playerChoice){
+    switch (gameOutcome) {
+      case GAME_OUTCOMES.DRAW:
+        gameResultText = 'The game is drawn. Play again by clicking the button below!'
+        break
+      case GAME_OUTCOMES.COMPUTER_WINS:
+        gameResultText = 'Oh no - the computer wins. Play again by clicking the button below!'
+        break
+      case GAME_OUTCOMES.PLAYER_WINS:
+        gameResultText = 'Yay - you won!  Try again by clicking the button below!'
+        break
+      default:
+    }
+
+    if (gameOutcome){
+      if (gameOutcome === GAME_OUTCOMES.DRAW){
+
+      }
+
       element = (
-        <section>
-          <h2>Start a new game?</h2>
-          <div>
-            <button className="start-new-game"
-                  onClick={() => actions.startNewGame()}>
-                  New Game
-            </button>
-          </div>
-        </section>
+        <div>
+          <section>
+            <h2>Game Result</h2>
+
+            <p>Your choice: {rpsType}</p>
+            <p>Computer Choice: {computerChoice}</p>
+            <p>Game Outcome: {gameOutcome}</p>
+
+            <p>{gameResultText}</p>
+          </section>
+
+          <section>
+            <h2>Start a new game?</h2>
+            <div>
+              <button className="start-new-game"
+                    onClick={() => actions.startNewGame()}>
+                    New Game
+              </button>
+            </div>
+          </section>
+        </div>
       )
     }else{
       element = null;

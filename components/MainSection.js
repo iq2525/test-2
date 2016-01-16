@@ -9,11 +9,11 @@ class MainSection extends Component {
 
   render() {
     const { game, actions } = this.props
-    let playerChoice = game.rpsType;
+    let gameOutcome = game.gameOutcome;
 
     let element
 
-    if (playerChoice){
+    if (gameOutcome){
       element = null;
     }else{
       element = (
@@ -21,7 +21,7 @@ class MainSection extends Component {
           <h2>Choose an option:</h2>
           <ul className="rps-items">
               {rpsTypesArray.map((rpsType, index) =>
-                  <RpsItem key={index} rpsType={rpsType} playerChoice={playerChoice} {...actions} />
+                  <RpsItem key={index} rpsType={rpsType} {...actions} />
               )}
           </ul>
         </section>

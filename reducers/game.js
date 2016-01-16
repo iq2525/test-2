@@ -22,20 +22,35 @@ export default function game(state = initialState, action) {
       let computerChoice = rpsTypesArray[randomNumber - 1]
       let gameOutcome;
 
+      console.log('rpsTypesArray:', rpsTypesArray);
+
       if (playerChoice === computerChoice){
-          gameOutcome = GAME_OUTCOMES.DRAW
+        gameOutcome = GAME_OUTCOMES.DRAW
       }else if (playerChoice === rpsTypesArray[0] &&
         computerChoice === rpsTypesArray[1]){
+
         gameOutcome = GAME_OUTCOMES.COMPUTER_WINS;
       }else if (playerChoice === rpsTypesArray[0] &&
         computerChoice === rpsTypesArray[2]){
+
         gameOutcome = GAME_OUTCOMES.PLAYER_WINS;
       }else if (playerChoice === rpsTypesArray[1] &&
         computerChoice === rpsTypesArray[0]){
+
         gameOutcome = GAME_OUTCOMES.PLAYER_WINS;
       }else if (playerChoice === rpsTypesArray[1] &&
         computerChoice === rpsTypesArray[2]){
+
         gameOutcome = GAME_OUTCOMES.COMPUTER_WINS;
+
+      }else if (playerChoice === rpsTypesArray[2] &&
+        computerChoice === rpsTypesArray[0]){
+
+        gameOutcome = GAME_OUTCOMES.COMPUTER_WINS;
+      }else if (playerChoice === rpsTypesArray[2] &&
+        computerChoice === rpsTypesArray[1]){
+
+        gameOutcome = GAME_OUTCOMES.PLAYER_WINS;
       }
 
       let stateObject = Object.assign({}, state, {
