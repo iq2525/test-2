@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import classnames from 'classnames'
-import TodoTextInput from './TodoTextInput'
 
 class RpsItem extends Component {
   constructor(props, context) {

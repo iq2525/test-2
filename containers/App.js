@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
-import * as RpsActions from '../actions/rps'
+import * as GameActions from '../actions/game'
 
 class App extends Component {
   render() {
@@ -33,7 +33,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   console.log('mapDispatchToProps:', mapDispatchToProps);
   return {
-    actions: bindActionCreators(RpsActions, dispatch)
+    actions: bindActionCreators(GameActions, dispatch)
   }
 }
 
