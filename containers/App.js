@@ -3,35 +3,37 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
-import * as TodoActions from '../actions/todos'
+import * as RpsActions from '../actions/rps'
 
 class App extends Component {
   render() {
-    const { todos, actions } = this.props
+    const { game, actions } = this.props
     return (
       <div>
         <Header/>
-        <MainSection todos={todos} actions={actions} />
+        <MainSection game={game} actions={actions} />
       </div>
     )
   }
 }
 
 App.propTypes = {
-  todos: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {
+  console.log('mapStateToProps:', mapStateToProps);
   console.log('state:', state);
   return {
-    todos: state.todos
+    game: state.game
   }
 }
 
 function mapDispatchToProps(dispatch) {
+  console.log('mapDispatchToProps:', mapDispatchToProps);
   return {
-    actions: bindActionCreators(TodoActions, dispatch)
+    actions: bindActionCreators(RpsActions, dispatch)
   }
 }
 

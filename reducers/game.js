@@ -6,7 +6,7 @@ const initialState = {
 }
 
 
-export default function todos(state = initialState, action) {
+export default function game(state = initialState, action) {
   console.log('REDUCER - state:', state);
 
   switch (action.type) {

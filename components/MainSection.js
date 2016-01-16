@@ -17,40 +17,13 @@ class MainSection extends Component {
     this.state = { filter: SHOW_ALL }
   }
 
-  handleClearCompleted() {
-    const atLeastOneCompleted = this.props.todos.toDos.some(todo => todo.completed)
-    if (atLeastOneCompleted) {
-      this.props.actions.clearCompleted()
-    }
-  }
-
-  handleShow(filter) {
-    this.setState({ filter })
-  }
-
-  renderToggleAll(completedCount) {
-    const { todos, actions } = this.props
-    if (todos.toDos.length > 0) {
-      return (
-        <input className="toggle-all"
-               type="checkbox"
-               checked={completedCount === todos.toDos.length}
-               onChange={actions.completeAll} />
-      )
-    }
-  }
-
-  renderFooter(completedCount) {
-
-  }
-
   render() {
-    const { todos, actions } = this.props
+    const { game, actions } = this.props
 
-    console.log('todos:', todos)
+    console.log('game:', game)
     console.log('rpsTypesArray:', rpsTypesArray);
 
-    let playerChoice = todos.rpsType;
+    let playerChoice = game.rpsType;
     console.log('Main Section - playerChoice:', playerChoice);
 
     // rpsTypesArray.map((rpsType, index) =>
@@ -73,7 +46,7 @@ class MainSection extends Component {
 }
 
 MainSection.propTypes = {
-  todos: PropTypes.object.isRequired,
+  game: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
