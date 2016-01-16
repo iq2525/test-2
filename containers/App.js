@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import MainSection from '../components/MainSection'
+import NewGame from '../components/NewGame'
 import * as GameActions from '../actions/game'
 
 class App extends Component {
@@ -12,6 +14,8 @@ class App extends Component {
       <div>
         <Header/>
         <MainSection game={game} actions={actions} />
+        <NewGame game={game} actions={actions}/>
+        <Footer/>
       </div>
     )
   }

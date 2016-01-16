@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import RpsItem from './RpsItem';
 import { rpsTypesArray } from '../constants/RpsTypes';
 
-class MainSection extends Component {
+class NewGame extends Component {
   constructor(props, context) {
     super(props, context)
   }
@@ -16,18 +16,19 @@ class MainSection extends Component {
     console.log('element:', element);
 
     if (playerChoice){
-      element = null;
-    }else{
       element = (
         <section>
-          <h2>Choose an option:</h2>
-          <ul className="rps-items">
-              {rpsTypesArray.map((rpsType, index) =>
-                  <RpsItem key={index} rpsType={rpsType} playerChoice={playerChoice} {...actions} />
-              )}
-          </ul>
+          <h2>Start a new game?</h2>
+          <div>
+            <button className="start-new-game"
+                  onClick={() => actions.startNewGame()}>
+                  New Game
+            </button>
+          </div>
         </section>
       )
+    }else{
+      element = null;
     }
 
     return (
@@ -36,9 +37,9 @@ class MainSection extends Component {
   }
 }
 
-MainSection.propTypes = {
+NewGame.propTypes = {
   game: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
-export default MainSection
+export default NewGame
