@@ -10,9 +10,9 @@ class RpsItem extends Component {
   }
 
   render() {
-    const { rpsType, setPlayerChoice} = this.props
+    const { rpsType, setPlayerChoice, playerChoice} = this.props
 
-    //console.log('selectedRpsType:', selectedRpsType)
+    console.log('playerChoice:', playerChoice)
 
     let element;
 

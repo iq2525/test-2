@@ -1,7 +1,8 @@
 import { SET_PLAYER_CHOICE } from '../constants/ActionTypes'
 
 const initialState = {
-    rpsType: null
+    rpsType: null,
+    computerChoice: null
 }
 
 
