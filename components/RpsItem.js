@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import classnames from 'classnames'
 import TodoTextInput from './TodoTextInput'
 
-class TodoItem extends Component {
+class RpsItem extends Component {
   constructor(props, context) {
     console.log('props', props);
 
@@ -31,9 +31,9 @@ class TodoItem extends Component {
   }
 }
 
-TodoItem.propTypes = {
+RpsItem.propTypes = {
   rpsType: PropTypes.string.isRequired,
   selectedRpsType: PropTypes.func.isRequired
 }
 
-export default TodoItem
+export default RpsItem

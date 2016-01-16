@@ -41,23 +41,7 @@ class MainSection extends Component {
   }
 
   renderFooter(completedCount) {
-    const { todos } = this.props
-    const { filter } = this.state
-    const activeCount = todos.toDos.length - completedCount
 
-    console.log('renderFooter');
-
-    console.log('todos:', todos);
-
-    if (todos.toDos.length) {
-      return (
-        <Footer completedCount={completedCount}
-                activeCount={activeCount}
-                filter={filter}
-                onClearCompleted={this.handleClearCompleted.bind(this)}
-                onShow={this.handleShow.bind(this)} />
-      )
-    }
   }
 
   render() {
@@ -67,12 +51,6 @@ class MainSection extends Component {
 
     console.log('todos:', todos);
 
-    const filteredTodos = todos.toDos.filter(TODO_FILTERS[filter])
-    const completedCount = todos.toDos.reduce((count, todo) =>
-      todo.completed ? count + 1 : count,
-      0
-    )
-
     console.log('rpsTypesArray:', rpsTypesArray);
 
     rpsTypesArray.map((rpsType, index) =>
@@ -81,15 +59,6 @@ class MainSection extends Component {
 
     return (
       <div>
-        <section className="main">
-          {this.renderToggleAll(completedCount)}
-          <ul className="todo-list">
-            {filteredTodos.map(todo =>
-              <TodoItem key={todo.id} todo={todo} {...actions} />
-            )}
-          </ul>
-          {this.renderFooter(completedCount)}
-        </section>
         <section>
           <ul className="rps-items">
               {rpsTypesArray.map((rpsType, index) =>
@@ -97,6 +66,7 @@ class MainSection extends Component {
               )}
           </ul>
         </section>
+        <Footer/>
       </div>
     )
   }
