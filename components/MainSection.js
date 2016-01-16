@@ -13,8 +13,6 @@ class MainSection extends Component {
 
     let element
 
-    console.log('element:', element);
-
     if (playerChoice){
       element = null;
     }else{

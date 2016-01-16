@@ -27,15 +27,12 @@ App.propTypes = {
 }
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps:', mapStateToProps);
-  console.log('state:', state);
   return {
     game: state.game
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  console.log('mapDispatchToProps:', mapDispatchToProps);
   return {
     actions: bindActionCreators(GameActions, dispatch)
   }

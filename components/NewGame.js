@@ -13,8 +13,6 @@ class NewGame extends Component {
 
     let element
 
-    console.log('element:', element);
-
     if (playerChoice){
       element = (
         <section>

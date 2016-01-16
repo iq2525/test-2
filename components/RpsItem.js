@@ -3,15 +3,11 @@ import classnames from 'classnames'
 
 class RpsItem extends Component {
   constructor(props, context) {
-    console.log('props', props);
-
     super(props, context)
   }
 
   render() {
     const { rpsType, setPlayerChoice, playerChoice} = this.props
-
-    console.log('playerChoice:', playerChoice)
 
     let element;
 
