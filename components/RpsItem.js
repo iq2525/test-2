@@ -9,22 +9,13 @@ class RpsItem extends Component {
   render() {
     const { rpsType, setPlayerChoice, playerChoice} = this.props
 
-    let element;
-
-      element = (
-        <div className="view">
-          <button className="select-rps-type"
-                  onClick={() => setPlayerChoice(rpsType)}>
-                  {rpsType}
-          </button>
-        </div>
-      )
-
     return (
-      <li className="test">
-        {element}
-      </li>
-    )
+      <li className="game-choice">
+        <button className="game-choice__button"
+                onClick={() => setPlayerChoice(rpsType)}>
+                {rpsType}
+        </button>
+      </li>)
   }
 }
 

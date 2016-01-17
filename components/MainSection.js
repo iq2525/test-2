@@ -17,7 +17,7 @@ class MainSection extends Component {
       element = null;
     }else{
       element = (
-        <section>
+        <section className="main">
           <h2>Choose an option:</h2>
           <ul className="rps-items">
               {rpsTypesArray.map((rpsType, index) =>
