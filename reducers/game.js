@@ -8,9 +8,7 @@ const initialState = {
     gameOutcome: null
 }
 
-
 export default function game(state = initialState, action) {
-  console.log('REDUCER - before state:', state);
 
   switch (action.type) {
     case SET_PLAYER_CHOICE:
@@ -22,8 +20,6 @@ export default function game(state = initialState, action) {
       //Need to convert to a 0 based index when referencing the Array
       let computerChoice = rpsTypesArray[randomNumber - 1]
       let gameOutcome;
-
-      console.log('rpsTypesArray:', rpsTypesArray);
 
       if (playerChoice === computerChoice){
         gameOutcome = GAME_OUTCOMES.DRAW
@@ -60,11 +56,9 @@ export default function game(state = initialState, action) {
         gameOutcome
        })
 
-      console.log('REDUCER - after state:', stateObject);
       return stateObject
 
     case START_NEW_GAME:
-      console.log('START_NEW_GAME - stateObject:', Object.assign({}, initialState))
       return Object.assign({}, initialState)
 
     default:

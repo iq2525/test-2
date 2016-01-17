@@ -12,10 +12,6 @@ class NewGame extends Component {
     const { game, actions } = this.props
     let {rpsType, computerChoice, gameOutcome } = game;
 
-    console.log('*********************');
-    console.log('data:', rpsType, computerChoice, gameOutcome);
-    console.log('*********************');
-
     let element
     let gameResultText
 

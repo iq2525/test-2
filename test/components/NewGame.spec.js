@@ -55,11 +55,6 @@ describe('components', () => {
 
       const { output, props } = setup(customProps)
 
-      console.log('*********************');
-      console.log('output.props.children:', output.props.children[1]
-                      .props.children[1]
-                      .props.children);
-
       const button = output.props.children[1]
                       .props.children[1]
                       .props.children
