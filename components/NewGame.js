@@ -14,38 +14,39 @@ class NewGame extends Component {
 
     let element
     let gameResultText
+    let classNameGameResultText;
 
     switch (gameOutcome) {
       case GAME_OUTCOMES.DRAW:
         gameResultText = 'The game is drawn. Play again by clicking the button below!'
+        classNameGameResultText = 'game-results__data__results-text--draw';
         break
       case GAME_OUTCOMES.COMPUTER_WINS:
         gameResultText = 'Oh no - the computer wins. Play again by clicking the button below!'
+        classNameGameResultText = 'game-results__data__results-text--computer-wins';
         break
       case GAME_OUTCOMES.PLAYER_WINS:
         gameResultText = 'Yay - you won!  Try again by clicking the button below!'
+        classNameGameResultText = 'game-results__data__results-text--player-wins';
         break
       default:
     }
 
+    classNameGameResultText += ' game-results__data__results-text'
+
     if (gameOutcome){
-      if (gameOutcome === GAME_OUTCOMES.DRAW){
-
-      }
-
       element = (
-        <div>
-          <section>
+        <div className="game-results">
+          <section className="game-results__data">
             <h2>Game Result</h2>
 
             <p>Your choice: {rpsType}</p>
             <p>Computer Choice: {computerChoice}</p>
-            <p>Game Outcome: {gameOutcome}</p>
 
-            <p>{gameResultText}</p>
+            <p className={classNameGameResultText}>{gameResultText}</p>
           </section>
 
-          <section>
+          <section className="game-results__start-new-game">
             <h2>Start a new game?</h2>
             <div>
               <button className="start-new-game"
