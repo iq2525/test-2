@@ -1,6 +1,9 @@
 @import 'bourbon';
 @import 'neat';
 
+$tablet: new-breakpoint(max-width 737px);
+$desktop: new-breakpoint(min-width 960px);
+
 
 body{
   background-color: red;
@@ -11,8 +14,11 @@ body{
 }
 
 .game-choice{
-  width: 100%;
-  @include span-columns(12);
+  @include span-columns(4);
+
+  @include media($tablet) {
+      @include span-columns(12);
+  }
 }
 
 .game-choice__button{
