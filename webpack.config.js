@@ -1,6 +1,17 @@
 var path = require('path')
 var webpack = require('webpack')
 
+var neat = require('node-neat');
+console.log('neat.includePaths:', neat.includePaths);
+
+var sassPaths = require("node-neat").includePaths.map(function (sassPath) {
+    return "includePaths[]=" + sassPath;
+}).join("&");
+
+
+console.log('neat.with:', neat.with('path/to/stylesheets'));
+console.log('neat.with:', neat.with('path/to/stylesheets1', 'path/to/stylesheets2'));
+
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -31,7 +42,7 @@ module.exports = {
     // }
       {
         test: /\.scss$/,
-        loaders: [ 'style', 'css', 'sass' ],
+        loaders: [ 'style', 'css', 'sass?' + sassPaths ],
         include: __dirname
       }
 

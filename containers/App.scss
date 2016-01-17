@@ -1,3 +1,20 @@
+@import 'bourbon';
+@import 'neat';
+
+
 body{
   background-color: red;
+}
+
+.rps-items{
+  @include outer-container;
+}
+
+.game-choice{
+  width: 100%;
+  @include span-columns(12);
+}
+
+.game-choice__button{
+  width: 100%;
 }
