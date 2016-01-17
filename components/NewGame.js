@@ -47,11 +47,10 @@ class NewGame extends Component {
           </section>
 
           <section className="game-results__start-new-game">
-            <h2>Start a new game?</h2>
             <div>
               <button className="start-new-game"
                     onClick={() => actions.startNewGame()}>
-                    New Game
+                    Start New Game
               </button>
             </div>
           </section>

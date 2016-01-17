@@ -77,12 +77,13 @@ h2{
 }
 
 .start-new-game{
-  @include span-columns(12);
+  @include span-columns(6);
+  @include shift(3);
   @include omega();
 
   padding: 20px;
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .footer{
