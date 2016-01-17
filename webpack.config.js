@@ -8,10 +8,6 @@ var sassPaths = require("node-neat").includePaths.map(function (sassPath) {
     return "includePaths[]=" + sassPath;
 }).join("&");
 
-
-console.log('neat.with:', neat.with('path/to/stylesheets'));
-console.log('neat.with:', neat.with('path/to/stylesheets1', 'path/to/stylesheets2'));
-
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [

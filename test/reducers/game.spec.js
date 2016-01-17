@@ -1,285 +1,131 @@
-import expect from 'expect'
-import todos from '../../reducers/todos'
+import expect, { createSpy, spyOn, isSpy } from 'expect'
+import game from '../../reducers/game'
 import * as types from '../../constants/ActionTypes'
+import { rpsTypesArray } from '../../constants/RpsTypes'
+import { GAME_OUTCOMES } from '../../constants/GameOutcomes'
 
-describe('todos reducer', () => {
+describe('game reducer', () => {
+  beforeEach(function () {
+
+  })
+
   it('should handle initial state', () => {
     expect(
-      todos(undefined, {})
-    ).toEqual([
-      {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
+      game(undefined, {})
+    ).toEqual({
+        rpsType: null,
+        computerChoice: null,
+        gameOutcome: null
+      })
   })
 
-  it('should handle ADD_TODO', () => {
-    expect(
-      todos([], {
-        type: types.ADD_TODO,
-        text: 'Run the tests'
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: false,
-        id: 0
-      }
-    ])
+  it('should make a game COMPUTER_WINS when the computer wins', () => {
+    spyOn(Math, 'floor').andReturn(0)
 
     expect(
-      todos([
+      game(
         {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
-        }
-      ], {
-        type: types.ADD_TODO,
-        text: 'Run the tests'
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: false,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
-
-    expect(
-      todos([
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        },
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          type: types.SET_PLAYER_CHOICE,
+          rpsType: rpsTypesArray[2]
         }
-      ], {
-        type: types.ADD_TODO,
-        text: 'Fix the tests'
-      })
-    ).toEqual([
-      {
-        text: 'Fix the tests',
-        completed: false,
-        id: 2
-      }, {
-        text: 'Run the tests',
-        completed: false,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
+      )).toEqual(
+        {
+          rpsType: rpsTypesArray[2],
+          computerChoice: rpsTypesArray[0],
+          gameOutcome: GAME_OUTCOMES.COMPUTER_WINS
+        })
   })
 
-  it('should handle DELETE_TODO', () => {
+  it('should make a game PLAYER_WINS when the computer wins', () => {
+    spyOn(Math, 'floor').andReturn(0)
+
     expect(
-      todos([
+      game(
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        },
+        {
+          type: types.SET_PLAYER_CHOICE,
+          rpsType: rpsTypesArray[1]
         }
-      ], {
-        type: types.DELETE_TODO,
-        id: 1
-      })
-    ).toEqual([
-      {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
+      )).toEqual(
+        {
+          rpsType: rpsTypesArray[1],
+          computerChoice: rpsTypesArray[0],
+          gameOutcome: GAME_OUTCOMES.PLAYER_WINS
+        })
   })
 
-  it('should handle EDIT_TODO', () => {
+  it('should make a game DRAWN when the computer and player pick the same object', () => {
+    spyOn(Math, 'floor').andReturn(1)
+
     expect(
-      todos([
+      game(
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        },
+        {
+          type: types.SET_PLAYER_CHOICE,
+          rpsType: rpsTypesArray[1]
         }
-      ], {
-        type: types.EDIT_TODO,
-        text: 'Fix the tests',
-        id: 1
-      })
-    ).toEqual([
-      {
-        text: 'Fix the tests',
-        completed: false,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
+      )).toEqual(
+        {
+          rpsType: rpsTypesArray[1],
+          computerChoice: rpsTypesArray[1],
+          gameOutcome: GAME_OUTCOMES.DRAW
+        })
   })
 
-  it('should handle COMPLETE_TODO', () => {
+  it('should make a game PLAYER_WINS when the computer = SCISSORS and player = ROCK', () => {
+    spyOn(Math, 'floor').andReturn(2)
+
     expect(
-      todos([
+      game(
         {
-          text: 'Run the tests',
-          completed: false,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        },
+        {
+          type: types.SET_PLAYER_CHOICE,
+          rpsType: rpsTypesArray[0]
         }
-      ], {
-        type: types.COMPLETE_TODO,
-        id: 1
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: true,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
+      )).toEqual(
+        {
+          rpsType: rpsTypesArray[0],
+          computerChoice: rpsTypesArray[2],
+          gameOutcome: GAME_OUTCOMES.PLAYER_WINS
+        })
   })
 
-  it('should handle COMPLETE_ALL', () => {
-    expect(
-      todos([
-        {
-          text: 'Run the tests',
-          completed: true,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
-        }
-      ], {
-        type: types.COMPLETE_ALL
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: true,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: true,
-        id: 0
-      }
-    ])
+  it('should make a game COMPUTER_WINS when the computer = PAPER and player = ROCK', () => {
+    spyOn(Math, 'floor').andReturn(1)
 
-    // Unmark if all todos are currently completed
     expect(
-      todos([
+      game(
         {
-          text: 'Run the tests',
-          completed: true,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: true,
-          id: 0
-        }
-      ], {
-        type: types.COMPLETE_ALL
-      })
-    ).toEqual([
-      {
-        text: 'Run the tests',
-        completed: false,
-        id: 1
-      }, {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
-  })
-
-  it('should handle CLEAR_COMPLETED', () => {
-    expect(
-      todos([
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        },
         {
-          text: 'Run the tests',
-          completed: true,
-          id: 1
-        }, {
-          text: 'Use Redux',
-          completed: false,
-          id: 0
+          type: types.SET_PLAYER_CHOICE,
+          rpsType: rpsTypesArray[0]
         }
-      ], {
-        type: types.CLEAR_COMPLETED
-      })
-    ).toEqual([
-      {
-        text: 'Use Redux',
-        completed: false,
-        id: 0
-      }
-    ])
-  })
-
-  it('should not generate duplicate ids after CLEAR_COMPLETED', () => {
-    expect(
-      [
+      )).toEqual(
         {
-          type: types.COMPLETE_TODO,
-          id: 0
-        }, {
-          type: types.CLEAR_COMPLETED
-        }, {
-          type: types.ADD_TODO,
-          text: 'Write more tests'
-        }
-      ].reduce(todos, [
-        {
-          id: 0,
-          completed: false,
-          text: 'Use Redux'
-        }, {
-          id: 1,
-          completed: false,
-          text: 'Write tests'
-        }
-      ])
-    ).toEqual([
-      {
-        text: 'Write more tests',
-        completed: false,
-        id: 2
-      }, {
-        text: 'Write tests',
-        completed: false,
-        id: 1
-      }
-    ])
+          rpsType: rpsTypesArray[0],
+          computerChoice: rpsTypesArray[1],
+          gameOutcome: GAME_OUTCOMES.COMPUTER_WINS
+        })
   })
 })

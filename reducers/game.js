@@ -14,11 +14,12 @@ export default function game(state = initialState, action) {
 
   switch (action.type) {
     case SET_PLAYER_CHOICE:
-      console.log('REDUCER - inside SET_PLAYER_CHOICE:');
-      let randomNumber = Math.floor(Math.random() * (4 - 1)) + 1;
-      console.log('randomNumber:', randomNumber);
+      //Gives a 1-based index
+      let randomNumber = Math.floor(Math.random() * (3)) + 1;
 
       let playerChoice = action.rpsType;
+
+      //Need to convert to a 0 based index when referencing the Array
       let computerChoice = rpsTypesArray[randomNumber - 1]
       let gameOutcome;
 
