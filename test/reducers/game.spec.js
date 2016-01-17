@@ -19,6 +19,25 @@ describe('game reducer', () => {
       })
   })
 
+  it('Should return intial state when START_NEW_GAME action triggered', () => {
+    expect(
+      game(
+        {
+          rpsType: rpsTypesArray[1],
+          computerChoice: rpsTypesArray[1],
+          gameOutcome: GAME_OUTCOMES.DRAW
+        },
+        {
+          type: types.START_NEW_GAME
+        }
+      )).toEqual(
+        {
+          rpsType: null,
+          computerChoice: null,
+          gameOutcome: null
+        })
+  })
+
   it('should make a game COMPUTER_WINS when the computer wins', () => {
     spyOn(Math, 'floor').andReturn(0)
 
