@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import MainSection from '../components/MainSection'
 import NewGame from '../components/NewGame'
 import * as GameActions from '../actions/game'
+import './App.scss'
 
 class App extends Component {
   render() {
