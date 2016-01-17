@@ -8,10 +8,6 @@ var sassPaths = require("node-neat").includePaths.map(function (sassPath) {
     return "includePaths[]=" + sassPath;
 }).join("&");
 
-
-console.log('neat.with:', neat.with('path/to/stylesheets'));
-console.log('neat.with:', neat.with('path/to/stylesheets1', 'path/to/stylesheets2'));
-
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -35,34 +31,11 @@ module.exports = {
       exclude: /node_modules/,
       include: __dirname
     },
-    // {
-    //   test: /\.css?$/,
-    //   loaders: [ 'style', 'raw' ],
-    //   include: __dirname
-    // }
-      {
-        test: /\.scss$/,
-        loaders: [ 'style', 'css', 'sass?' + sassPaths ],
-        include: __dirname
-      }
-
+    {
+      test: /\.scss$/,
+      loaders: [ 'style', 'css', 'sass?' + sassPaths ],
+      include: __dirname
+    }
     ]
   }
-}
-
-
-// When inside Redux repo, prefer src to compiled version.
-// You can safely delete these lines in your project.
-var reduxSrc = path.join(__dirname, '..', '..', 'src')
-var reduxNodeModules = path.join(__dirname, '..', '..', 'node_modules')
-var fs = require('fs')
-if (fs.existsSync(reduxSrc) && fs.existsSync(reduxNodeModules)) {
-  // Resolve Redux to source
-  module.exports.resolve = { alias: { 'redux': reduxSrc } }
-  // Compile Redux from source
-  module.exports.module.loaders.push({
-    test: /\.js$/,
-    loaders: [ 'babel' ],
-    include: reduxSrc
-  })
 }
